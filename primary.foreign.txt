@@ -1,0 +1,172 @@
+
+SQL*Plus: Release 10.2.0.1.0 - Production on Thu Feb 4 12:23:20 2021
+
+Copyright (c) 1982, 2005, Oracle.  All rights reserved.
+
+SQL> connect system
+Enter password:
+Connected.
+SQL> create table relation_pri (ssn number(80),
+  2  create table relation_pri (ssn number(80),;
+create table relation_pri (ssn number(80),
+                                      *
+ERROR at line 1:
+ORA-01727: numeric precision specifier is out of range (1 to 38)
+
+
+SQL> create table relation_pri (ssn number(8), name varchar(8), class varchar(8), address varchar(8), CONSTRAINT PRI_KEY PRIMARY KEY (ssn));
+
+Table created.
+
+SQL> desc relation_pri
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ SSN                                       NOT NULL NUMBER(8)
+ NAME                                               VARCHAR2(8)
+ CLASS                                              VARCHAR2(8)
+ ADDRESS                                            VARCHAR2(8)
+
+SQL> insert into relation_pri values ('&ssn','&name','&class','&address');
+Enter value for ssn: 101
+Enter value for name: abhi
+Enter value for class: 10
+Enter value for address: delhi
+old   1: insert into relation_pri values ('&ssn','&name','&class','&address')
+new   1: insert into relation_pri values ('101','abhi','10','delhi')
+
+1 row created.
+
+SQL> /
+Enter value for ssn: 102
+Enter value for name: akash
+Enter value for class: 10
+Enter value for address: delhi
+old   1: insert into relation_pri values ('&ssn','&name','&class','&address')
+new   1: insert into relation_pri values ('102','akash','10','delhi')
+
+1 row created.
+
+SQL> /
+Enter value for ssn: 103
+Enter value for name: ajay
+Enter value for class: 9
+Enter value for address: noida
+old   1: insert into relation_pri values ('&ssn','&name','&class','&address')
+new   1: insert into relation_pri values ('103','ajay','9','noida')
+
+1 row created.
+
+SQL> /
+Enter value for ssn: 104
+Enter value for name: aman
+Enter value for class: 8
+Enter value for address: gurugram
+old   1: insert into relation_pri values ('&ssn','&name','&class','&address')
+new   1: insert into relation_pri values ('104','aman','8','gurugram')
+
+1 row created.
+
+SQL> /
+Enter value for ssn: 105
+Enter value for name: anuj
+Enter value for class: 8
+Enter value for address: noida
+old   1: insert into relation_pri values ('&ssn','&name','&class','&address')
+new   1: insert into relation_pri values ('105','anuj','8','noida')
+
+1 row created.
+
+SQL> /
+Enter value for ssn: 106
+Enter value for name: archit
+Enter value for class: 10
+Enter value for address: delhi
+old   1: insert into relation_pri values ('&ssn','&name','&class','&address')
+new   1: insert into relation_pri values ('106','archit','10','delhi')
+
+1 row created.
+
+SQL> create table relations_for(ssn number(8), fees number(8), CONSTRAINT FOR_KEY FOREIGN KEY (ssn) REFERENCES relation_pri(ssn));
+
+Table created.
+
+SQL> desc relations_for
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ SSN                                                NUMBER(8)
+ FEES                                               NUMBER(8)
+
+SQL> insert into relations_for values ('&ssn','&fees');
+Enter value for ssn: 101
+Enter value for fees: 2000
+old   1: insert into relations_for values ('&ssn','&fees')
+new   1: insert into relations_for values ('101','2000')
+
+1 row created.
+
+SQL> /
+Enter value for ssn: 102
+Enter value for fees: 2000
+old   1: insert into relations_for values ('&ssn','&fees')
+new   1: insert into relations_for values ('102','2000')
+
+1 row created.
+
+SQL> /
+Enter value for ssn: 103
+Enter value for fees: 1800
+old   1: insert into relations_for values ('&ssn','&fees')
+new   1: insert into relations_for values ('103','1800')
+
+1 row created.
+
+SQL> /
+Enter value for ssn: 104
+Enter value for fees: 1800
+old   1: insert into relations_for values ('&ssn','&fees')
+new   1: insert into relations_for values ('104','1800')
+
+1 row created.
+
+SQL> /
+Enter value for ssn: 105
+Enter value for fees: 1750
+old   1: insert into relations_for values ('&ssn','&fees')
+new   1: insert into relations_for values ('105','1750')
+
+1 row created.
+
+SQL> /
+Enter value for ssn: 106
+Enter value for fees: 2000
+old   1: insert into relations_for values ('&ssn','&fees')
+new   1: insert into relations_for values ('106','2000')
+
+1 row created.
+
+SQL> select * from relations_for;
+
+       SSN       FEES
+---------- ----------
+       101       2000
+       102       2000
+       103       1800
+       104       1800
+       105       1750
+       106       2000
+
+6 rows selected.
+
+SQL> select * from relation_pri;
+
+       SSN NAME     CLASS    ADDRESS
+---------- -------- -------- --------
+       101 abhi     10       delhi
+       102 akash    10       delhi
+       103 ajay     9        noida
+       104 aman     8        gurugram
+       105 anuj     8        noida
+       106 archit   10       delhi
+
+6 rows selected.
+

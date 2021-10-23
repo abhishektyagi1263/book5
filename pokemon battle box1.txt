@@ -1,0 +1,56 @@
+Regieleki @ Magnet  
+Ability: Transistor  
+EVs: 252 SpA / 4 SpD / 252 Spe  
+Timid Nature  
+IVs: 0 Atk  
+- Volt Switch  
+- Thunderbolt  
+- Rising Voltage  
+- Substitute  
+
+Arcanine (F) @ Life Orb  
+Ability: Intimidate  
+EVs: 252 Atk / 4 SpD / 252 Spe  
+Jolly Nature  
+- Close Combat  
+- Extreme Speed  
+- Wild Charge  
+- Flare Blitz  
+
+Swampert (M) @ Assault Vest  
+Ability: Torrent  
+EVs: 252 HP / 252 Atk / 4 SpD  
+Adamant Nature  
+- Earthquake  
+- Stealth Rock  
+- Ice Punch  
+- Waterfall  
+
+DusknoirQ (Dusknoir)  
+Ability: Pressure  
+EVs: 252 HP / 4 Atk / 252 SpD  
+Careful Nature  
+- Will-O-Wisp  
+- Confuse Ray  
+- Night Shade  
+- Fire Punch  
+
+Hippowdon @ Leftovers  
+Ability: Sand Stream  
+EVs: 252 HP / 4 Atk / 252 Def  
+Impish Nature  
+- Stealth Rock  
+- Slack Off  
+- Earthquake  
+- Whirlwind  
+
+Latios (M)  
+Ability: Levitate  
+EVs: 252 SpA / 4 SpD / 252 Spe  
+Timid Nature  
+IVs: 0 Atk  
+- Draco Meteor  
+- Psychic  
+- Defog  
+- Mystical Fire  
+

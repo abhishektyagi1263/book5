@@ -1,0 +1,21 @@
+site -> 1 login -> home page
+        2 login -> register
+        3 home page -> searchmenu
+	4 LATEST MOVIES
+	NAV BAR -> LOGO HOLLYWOOD BOLLYWOOD LOGIN SIGNUP
+
+	TREANDING MOVIES
+	WEBSERIES
+	212529
+	343a40
+	ffffff
+
+login 2
+sign up 2
+password reset 1
+home page compents -> nav bar 1 cards 2 footer 1
+tollywood -> 
+bollywood ->
+cards -> final
+
+

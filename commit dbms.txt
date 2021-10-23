@@ -1,0 +1,268 @@
+we can not rollback all these tracsaction ddl
+
+
+can roll back
+insert
+update
+delete
+
+SQL*Plus: Release 10.2.0.1.0 - Production on Thu Feb 4 21:48:16 2021
+
+Copyright (c) 1982, 2005, Oracle.  All rights reserved.
+
+SQL> CONNECT SYSTEM
+Enter password:
+Connected.
+SQL> select * from student;
+
+no rows selected
+
+SQL> drop student;
+drop student
+     *
+ERROR at line 1:
+ORA-00950: invalid DROP option
+
+
+SQL> drop table student;
+
+Table dropped.
+
+SQL> create table s(sno number(3), sname varchar(6), sage varchar(3), primary key (sno));
+
+Table created.
+
+SQL> insert into s values ('&ssn','&sname','&sage');
+Enter value for ssn: 101
+Enter value for sname: a
+Enter value for sage: 12'
+old   1: insert into s values ('&ssn','&sname','&sage')
+new   1: insert into s values ('101','a','12'')
+ERROR:
+ORA-01756: quoted string not properly terminated
+
+
+SQL> /
+Enter value for ssn: 102
+Enter value for sname: b
+Enter value for sage: 13
+old   1: insert into s values ('&ssn','&sname','&sage')
+new   1: insert into s values ('102','b','13')
+
+1 row created.
+
+SQL> /
+Enter value for ssn: 103
+Enter value for sname: c
+Enter value for sage: 12
+old   1: insert into s values ('&ssn','&sname','&sage')
+new   1: insert into s values ('103','c','12')
+
+1 row created.
+
+SQL> /
+Enter value for ssn: 104
+Enter value for sname: d
+Enter value for sage: 14
+old   1: insert into s values ('&ssn','&sname','&sage')
+new   1: insert into s values ('104','d','14')
+
+1 row created.
+
+SQL> /
+Enter value for ssn: 105
+Enter value for sname: e
+Enter value for sage: 15
+old   1: insert into s values ('&ssn','&sname','&sage')
+new   1: insert into s values ('105','e','15')
+
+1 row created.
+
+SQL> /
+Enter value for ssn: 106
+Enter value for sname: f
+Enter value for sage: 11
+old   1: insert into s values ('&ssn','&sname','&sage')
+new   1: insert into s values ('106','f','11')
+
+1 row created.
+
+SQL> /
+Enter value for ssn: 107
+Enter value for sname: i
+Enter value for sage: 16
+old   1: insert into s values ('&ssn','&sname','&sage')
+new   1: insert into s values ('107','i','16')
+
+1 row created.
+
+SQL> /
+Enter value for ssn: 108
+Enter value for sname: h
+Enter value for sage: 17
+old   1: insert into s values ('&ssn','&sname','&sage')
+new   1: insert into s values ('108','h','17')
+
+1 row created.
+
+SQL> /
+Enter value for ssn: 109
+Enter value for sname: j
+Enter value for sage: 18
+old   1: insert into s values ('&ssn','&sname','&sage')
+new   1: insert into s values ('109','j','18')
+
+1 row created.
+
+SQL> /
+Enter value for ssn: 110
+Enter value for sname: k
+Enter value for sage: 19
+old   1: insert into s values ('&ssn','&sname','&sage')
+new   1: insert into s values ('110','k','19')
+
+1 row created.
+
+SQL> /
+Enter value for ssn: 111
+Enter value for sname: h
+Enter value for sage: 16
+old   1: insert into s values ('&ssn','&sname','&sage')
+new   1: insert into s values ('111','h','16')
+
+1 row created.
+
+SQL> /
+Enter value for ssn: l
+Enter value for sname: 18
+Enter value for sage: 34
+old   1: insert into s values ('&ssn','&sname','&sage')
+new   1: insert into s values ('l','18','34')
+insert into s values ('l','18','34')
+                      *
+ERROR at line 1:
+ORA-01722: invalid number
+
+
+SQL> /
+Enter value for ssn: 112
+Enter value for sname: l
+Enter value for sage: 10
+old   1: insert into s values ('&ssn','&sname','&sage')
+new   1: insert into s values ('112','l','10')
+
+1 row created.
+
+SQL> select sname , ssn from s;
+select sname , ssn from s
+               *
+ERROR at line 1:
+ORA-00904: "SSN": invalid identifier
+
+
+SQL> select * from s;
+
+       SNO SNAME  SAG
+---------- ------ ---
+       102 b      13
+       103 c      12
+       104 d      14
+       105 e      15
+       106 f      11
+       107 i      16
+       108 h      17
+       109 j      18
+       110 k      19
+       111 h      16
+       112 l      10
+
+11 rows selected.
+
+SQL> savepoint a1;
+
+Savepoint created.
+
+SQL> delete s where ssn = 211;
+delete s where ssn = 211
+               *
+ERROR at line 1:
+ORA-00904: "SSN": invalid identifier
+
+
+SQL> delete s where sno = 211;
+
+0 rows deleted.
+
+SQL> savepoint a2;
+
+Savepoint created.
+
+SQL> delete s where sno<109;
+
+7 rows deleted.
+
+SQL> select * from s;
+
+       SNO SNAME  SAG
+---------- ------ ---
+       109 j      18
+       110 k      19
+       111 h      16
+       112 l      10
+
+SQL> rollback to a2;
+
+Rollback complete.
+
+SQL> select * from s;
+
+       SNO SNAME  SAG
+---------- ------ ---
+       102 b      13
+       103 c      12
+       104 d      14
+       105 e      15
+       106 f      11
+       107 i      16
+       108 h      17
+       109 j      18
+       110 k      19
+       111 h      16
+       112 l      10
+
+11 rows selected.
+
+SQL> select * from s;
+
+       SNO SNAME  SAG
+---------- ------ ---
+       102 b      13
+       103 c      12
+       104 d      14
+       105 e      15
+       106 f      11
+       107 i      16
+       108 h      17
+       109 j      18
+       110 k      19
+       111 h      16
+       112 l      10
+
+11 rows selected.
+
+SQL> insert into student values(118,'s',19);
+insert into student values(118,'s',19)
+            *
+ERROR at line 1:
+ORA-00942: table or view does not exist
+
+
+SQL> delete s where sno<109;
+
+7 rows deleted.
+
+SQL> commit;
+
+Commit complete.
+
+SQL>
